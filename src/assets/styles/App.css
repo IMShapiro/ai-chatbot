@@ -6,6 +6,7 @@
 .messages{
     background-color: rgb(128, 131, 133);
     max-height: fit-content;
+    max-width: 100%;
 
     padding: 1%;
     
@@ -26,11 +27,14 @@
     align-self: flex-start;
     color: white;
     background-color: black;
-    width: fit-content;
+    max-width: 99%;
     border-radius: 10px;
     border: 2px solid black;
     padding: 1%;
     margin: 1%;
+
+    overflow-x: scroll;
+    scrollbar-width: none;
 }
 
 .input-container{

@@ -6,6 +6,7 @@ import sendIcon from "./assets/icons/send-icon.svg";
 import speaker from "./assets/icons/speaker.svg";
 import copyIcon from "./assets/icons/copy.svg";
 import { convertSpeechToText } from "./Config/speech";
+import Markdown from "react-markdown";
 
 function App() {
 
@@ -54,14 +55,14 @@ function App() {
                       <p>{item.user}</p>
                     </div>
                     <div className="bot">
-                      <p>{item.bot}</p>
+                      <Markdown>{item.bot}</Markdown>
 
                       {/* Speech button */}
                       <button
                         className="btn btn-sm m-1 btn-secondary" 
                         onClick={()=>{
                         let msg = new SpeechSynthesisUtterance();
-                        msg.text = item.bot;
+                        msg.text = item.bot.replace(/\*\*|\*/g, '');
                         window.speechSynthesis.speak(msg);
                       }}><img src={speaker}/></button>
 
@@ -92,11 +93,11 @@ function App() {
           name="prompt"
           value={prompt}
           onChange={handleChange}
+          // Handle submit when user hits enter key
           onKeyDown={async (e)=>{
             if(e.code == "Enter" && prompt.trim() !== ""){
                 await handleSubmit(prompt)
               }
-            console.log(e.code)
           }}
           className="form-field"
         />

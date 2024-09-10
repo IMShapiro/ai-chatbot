@@ -13,5 +13,6 @@ export async function processPrompt(prompt){
         return response;
     }catch(error){
         console.error(error)
+        return error
     }
 }
